@@ -278,6 +278,89 @@ footer{background:#11100e;color:#a9a39a;padding:52px 0 25px}
   .hero-logo-photo{padding:12px!important}
 }
 </style>
+
+<style id="anjo-master-v2">
+/* ART DIRECTION V2 */
+.workshop{background:#181613;color:#fff}
+.workshop .kicker{color:var(--gold2)}
+.workshop-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:center}
+.workshop-copy h2{margin-top:20px}
+.workshop-copy p{color:#aaa49b;font-size:13px;max-width:430px;margin-top:24px}
+.process-line{margin-top:35px;display:grid;gap:14px}
+.process-line div{display:flex;gap:14px;align-items:center;color:#c4beb5;font-size:11px}
+.process-line b{width:27px;height:27px;border:1px solid #4c4842;border-radius:50%;display:grid;place-items:center;color:var(--gold2);font-size:9px}
+.workshop-photo{position:relative;min-height:560px;overflow:hidden;background:#24211d}
+.workshop-photo img{position:absolute;width:72%;height:74%;object-fit:cover;right:0;top:0;filter:saturate(.88)}
+.workshop-photo:before{content:"";position:absolute;width:64%;height:66%;left:0;bottom:0;border:1px solid rgba(210,180,124,.32);z-index:2}
+.workshop-photo:after{content:"PROCESSO · FEITO À MÃO";position:absolute;left:24px;bottom:25px;color:var(--gold2);font-size:8px;letter-spacing:.17em;writing-mode:vertical-rl}
+.detail-strip{background:var(--paper2);padding:20px 0;border-block:1px solid var(--line)}
+.detail-strip-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+.detail-strip strong{font:500 25px "Cormorant Garamond",serif}
+.detail-strip span{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.13em}
+.catalog-intro{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:30px}
+.catalog-intro p{max-width:360px;font-size:12px}
+.art-card .art-action{position:absolute;z-index:3;right:16px;top:16px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.9);color:#171513;display:grid;place-items:center;font-size:13px;opacity:0;transform:translateY(-5px);transition:.35s}
+.art-card:hover .art-action{opacity:1;transform:none}
+.art-detail{position:fixed;inset:0;z-index:160;background:#f5f1e9;display:none;overflow:auto}
+.art-detail.open{display:block}
+.art-detail-inner{min-height:100%;display:grid;grid-template-columns:1fr 1fr}
+.art-detail-media{background:#ddd4c7;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:55px}
+.art-detail-media img{width:100%;height:calc(100vh - 110px);object-fit:contain;box-shadow:0 30px 70px rgba(0,0,0,.18)}
+.art-detail-info{padding:clamp(50px,7vw,100px);display:flex;flex-direction:column;justify-content:center;position:relative}
+.art-detail-close{position:absolute;right:28px;top:25px;width:45px;height:45px;border-radius:50%;border:1px solid var(--line);background:#fff;color:#171513;font-size:22px}
+.art-detail-info .kicker{margin-bottom:25px}
+.art-detail-info h2{font-size:clamp(60px,6vw,90px)}
+.art-detail-info p{font-size:13px;max-width:450px;margin-top:25px}
+.art-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-block:1px solid var(--line);margin:35px 0}
+.art-spec{padding:15px 10px 15px 0}
+.art-spec+ .art-spec{border-left:1px solid var(--line);padding-left:15px}
+.art-spec small{display:block;font-size:8px;color:var(--gold);text-transform:uppercase;letter-spacing:.12em}
+.art-spec strong{display:block;font:500 23px "Cormorant Garamond",serif;margin-top:5px}
+.mobile-menu-panel{display:none}
+.insta-section{background:#fffdf9}
+.insta-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:70px;align-items:center}
+.insta-copy h2{margin-top:20px}
+.insta-copy p{font-size:13px;max-width:430px;margin-top:22px}
+.insta-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.insta-tiles img{width:100%;height:180px;object-fit:cover}
+.insta-tiles img:first-child{height:370px;grid-row:span 2}
+.sticky-mobile-action{display:none}
+@media(max-width:900px){
+ .workshop-grid,.insta-grid{grid-template-columns:1fr;gap:42px}
+ .workshop-photo{min-height:480px}
+ .art-detail-inner{grid-template-columns:1fr}
+ .art-detail-media{min-height:auto;height:55vh;padding:20px}
+ .art-detail-media img{height:100%}
+ .art-detail-info{padding:45px 24px 70px}
+ .art-detail-info h2{font-size:58px}
+}
+@media(max-width:600px){
+ .detail-strip{padding:14px 0}
+ .detail-strip-inner{align-items:flex-start;flex-direction:column;gap:5px}
+ .detail-strip strong{font-size:22px}
+ .workshop-photo{min-height:410px}
+ .workshop-photo img{width:82%;height:70%}
+ .process-line{margin-top:27px}
+ .catalog-intro{display:block;margin-bottom:24px}
+ .catalog-intro p{margin-top:15px}
+ .art-card .art-action{opacity:1;transform:none}
+ .art-detail-media{height:48vh;padding:12px}
+ .art-detail-info{padding:36px 18px 85px}
+ .art-detail-info h2{font-size:53px}
+ .art-specs{grid-template-columns:1fr 1fr}
+ .art-spec:last-child{grid-column:span 2;border-left:0;border-top:1px solid var(--line);padding-left:0}
+ .insta-tiles img{height:130px}
+ .insta-tiles img:first-child{height:268px}
+}
+</style>
+
+<style id="mobile-nav-v2">
+@media(max-width:600px){
+ .navlinks.mobile-open{display:flex!important;position:fixed!important;left:12px!important;right:12px!important;top:72px!important;padding:10px!important;flex-direction:column!important;gap:2px!important;background:rgba(255,253,249,.98)!important;backdrop-filter:blur(22px)!important;border:1px solid var(--line)!important;border-radius:18px!important;box-shadow:0 25px 70px rgba(0,0,0,.14)!important;z-index:90!important}
+ .navlinks.mobile-open a{padding:15px 13px!important;font-size:12px!important;border-radius:10px}
+ .navlinks.mobile-open a:hover{background:#f0ebe2}
+}
+</style>
 </head>
 <body>
 <div class="cursor-glow" id="cursorGlow"></div>
@@ -319,6 +402,13 @@ footer{background:#11100e;color:#a9a39a;padding:52px 0 25px}
  </div>
 </section>
 
+
+<div class="detail-strip">
+ <div class="container detail-strip-inner">
+  <strong>Peças autorais. Feitas para permanecer.</strong>
+  <span>São Paulo · encomendas abertas</span>
+ </div>
+</div>
 <div class="marquee"><div class="marquee-track">
  <span>FEITO À MÃO <i>✦</i></span><span>OBRAS AUTORAIS <i>✦</i></span><span>PERSONALIZAÇÃO <i>✦</i></span><span>ARTE COM PROPÓSITO <i>✦</i></span>
  <span>FEITO À MÃO <i>✦</i></span><span>OBRAS AUTORAIS <i>✦</i></span><span>PERSONALIZAÇÃO <i>✦</i></span><span>ARTE COM PROPÓSITO <i>✦</i></span>
@@ -346,23 +436,23 @@ footer{background:#11100e;color:#a9a39a;padding:52px 0 25px}
   </div>
   <div class="gallery-grid">
    <article class="art-card reveal photo-open" data-image="obra-cristo.png" data-caption="Cristo é o caminho">
-    <img src="obra-cristo.png" alt="Obra autoral com mensagem cristã">
+    <img src="obra-cristo.png" alt="Obra autoral com mensagem cristã"><button class="art-action" aria-label="Ver obra">↗</button>
     <div class="art-meta"><small>Peça autoral</small><h3>Cristo é o caminho</h3></div>
    </article>
    <article class="art-card reveal photo-open" data-image="obra-mateus.png" data-caption="Mateus 18:12">
-    <img src="obra-mateus.png" alt="Obra autoral Mateus 18:12">
+    <img src="obra-mateus.png" alt="Obra autoral Mateus 18:12"><button class="art-action" aria-label="Ver obra">↗</button>
     <div class="art-meta"><small>Peça autoral</small><h3>Mateus 18:12</h3></div>
    </article>
    <article class="art-card reveal photo-open" data-image="obra-flores.png" data-caption="Flores & traços">
-    <img src="obra-flores.png" alt="Obra floral autoral">
+    <img src="obra-flores.png" alt="Obra floral autoral"><button class="art-action" aria-label="Ver obra">↗</button>
     <div class="art-meta"><small>Peça autoral</small><h3>Flores & traços</h3></div>
    </article>
    <article class="art-card reveal photo-open" data-image="obra-colorida.png" data-caption="Cores em movimento">
-    <img src="obra-colorida.png" alt="Obra abstrata colorida">
+    <img src="obra-colorida.png" alt="Obra abstrata colorida"><button class="art-action" aria-label="Ver obra">↗</button>
     <div class="art-meta"><small>Original</small><h3>Cores em movimento</h3></div>
    </article>
    <article class="art-card reveal photo-open" data-image="obra-abstrata.png" data-caption="Entre contrastes">
-    <img src="obra-abstrata.png" alt="Obra abstrata em preto e branco">
+    <img src="obra-abstrata.png" alt="Obra abstrata em preto e branco"><button class="art-action" aria-label="Ver obra">↗</button>
     <div class="art-meta"><small>Original</small><h3>Entre contrastes</h3></div>
    </article>
   </div>
@@ -399,6 +489,25 @@ footer{background:#11100e;color:#a9a39a;padding:52px 0 25px}
  </div>
 </section>
 
+
+<section class="workshop">
+ <div class="container workshop-grid">
+  <div class="workshop-copy reveal">
+   <span class="kicker">Por trás da obra</span>
+   <h2>Não é só tinta.<br>É <em>processo.</em></h2>
+   <p>Da tela em branco aos últimos detalhes, cada peça passa por mãos, decisões e pequenas imperfeições que fazem parte do que torna uma obra realmente autoral.</p>
+   <div class="process-line">
+    <div><b>01</b><span>Preparação da tela</span></div>
+    <div><b>02</b><span>Construção de cor e composição</span></div>
+    <div><b>03</b><span>Detalhes feitos à mão</span></div>
+    <div><b>04</b><span>Finalização e entrega</span></div>
+   </div>
+  </div>
+  <div class="workshop-photo reveal">
+   <img src="obra-flores.png" alt="Processo e obra artesanal do AnJo Ateliê">
+  </div>
+ </div>
+</section>
 <section class="story" id="atelie">
  <div class="container story-grid">
   <div class="story-visual reveal"><img src="obra-flores.png" alt="Obra floral do AnJo Ateliê"><div class="story-stamp"><small>AnJo Ateliê</small><strong>Feito com intenção.</strong></div></div>
@@ -427,6 +536,22 @@ footer{background:#11100e;color:#a9a39a;padding:52px 0 25px}
  </div>
 </section>
 
+
+<section class="insta-section">
+ <div class="container insta-grid">
+  <div class="insta-copy reveal">
+   <span class="kicker">Ateliê em movimento</span>
+   <h2>Veja a arte<br>fora da moldura.</h2>
+   <p>Processos, novas peças e bastidores ganham vida nas redes do AnJo. Enquanto o catálogo mostra as obras, o dia a dia mostra como elas nascem.</p>
+   <div style="margin-top:28px"><a class="btn btn-dark" href="https://www.instagram.com/" target="_blank" rel="noopener">Acompanhar no Instagram ↗</a></div>
+  </div>
+  <div class="insta-tiles reveal">
+   <img src="obra-flores.png" alt="Obra floral AnJo Ateliê">
+   <img src="obra-cristo.png" alt="Obra Cristo é o caminho">
+   <img src="obra-mateus.png" alt="Obra Mateus 18:12">
+  </div>
+ </div>
+</section>
 <section class="brand-story">
  <div class="container brand-grid">
   <div class="brand-box reveal"><img src="logo.jpg" alt="Logo completo oficial AnJo Ateliê"></div>
@@ -464,6 +589,26 @@ footer{background:#11100e;color:#a9a39a;padding:52px 0 25px}
 
 <div class="mobile-cta"><a href="#personalize">Quero criar meu quadro <span style="margin-left:8px">↗</span></a></div>
 
+
+<div class="art-detail" id="artDetail" aria-hidden="true">
+  <div class="art-detail-inner">
+    <div class="art-detail-media">
+      <img id="detailImage" src="" alt="">
+    </div>
+    <div class="art-detail-info">
+      <button class="art-detail-close" id="detailClose" aria-label="Fechar">×</button>
+      <span class="kicker">Obra AnJo Ateliê</span>
+      <h2 id="detailTitle">Obra</h2>
+      <p id="detailText">Uma peça autoral feita à mão, criada para levar personalidade e significado ao espaço.</p>
+      <div class="art-specs">
+        <div class="art-spec"><small>Categoria</small><strong>Autoral</strong></div>
+        <div class="art-spec"><small>Disponibilidade</small><strong>Consultar</strong></div>
+        <div class="art-spec"><small>Pedido</small><strong>WhatsApp</strong></div>
+      </div>
+      <button class="btn btn-dark" id="detailWhatsapp">Tenho interesse nessa obra ↗</button>
+    </div>
+  </div>
+</div>
 <div class="lightbox" id="lightbox" aria-hidden="true">
  <button class="close-lightbox" id="closeLightbox" aria-label="Fechar">×</button>
  <img id="lightboxImage" alt="">
@@ -490,23 +635,33 @@ if(glow){
  window.addEventListener('pointerleave',()=>glow.style.opacity='0');
 }
 
-const lightbox=document.getElementById('lightbox');
-const lbImg=document.getElementById('lightboxImage');
-const lbCaption=document.getElementById('lightCaption');
-function closeLightbox(){
- lightbox.classList.remove('open');lightbox.setAttribute('aria-hidden','true');document.body.classList.remove('lock');
+const detail=document.getElementById('artDetail');
+const detailImage=document.getElementById('detailImage');
+const detailTitle=document.getElementById('detailTitle');
+const detailText=document.getElementById('detailText');
+let selectedArtwork='';
+function closeDetail(){
+ detail.classList.remove('open');detail.setAttribute('aria-hidden','true');document.body.classList.remove('lock');
 }
 document.querySelectorAll('.photo-open').forEach(card=>{
  card.addEventListener('click',()=>{
-  lbImg.src=card.dataset.image;
-  lbImg.alt=card.querySelector('img').alt;
-  lbCaption.textContent=card.dataset.caption||'';
-  lightbox.classList.add('open');lightbox.setAttribute('aria-hidden','false');document.body.classList.add('lock');
+  selectedArtwork=card.dataset.caption||'Obra AnJo Ateliê';
+  detailImage.src=card.dataset.image;
+  detailImage.alt=card.querySelector('img').alt;
+  detailTitle.textContent=selectedArtwork;
+  detailText.textContent='Uma peça autoral feita à mão, pensada para levar personalidade, textura e significado ao ambiente.';
+  detail.classList.add('open');
+  detail.setAttribute('aria-hidden','false');
+  document.body.classList.add('lock');
  });
 });
-document.getElementById('closeLightbox').addEventListener('click',closeLightbox);
-lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+document.getElementById('detailClose').addEventListener('click',closeDetail);
+detail.addEventListener('click',e=>{if(e.target===detail)closeDetail()});
+document.getElementById('detailWhatsapp').addEventListener('click',()=>{
+ const msg=`Olá, AnJo Ateliê! Vi a obra "${selectedArtwork}" no site e gostaria de saber mais sobre disponibilidade e valor.`;
+ window.open('https://wa.me/5511976651795?text='+encodeURIComponent(msg),'_blank','noopener');
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail()});
 
 document.getElementById('menuBtn').addEventListener('click',()=>{
  const nav=document.querySelector('.navlinks');
