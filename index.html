@@ -1,467 +1,525 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#11100e">
-<meta name="description" content="AnJo Ateliê — arte personalizada, quadros feitos à mão e obras únicas para transformar espaços em histórias.">
-<title>AnJo Ateliê — Arte que começa com uma ideia</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f5f1e9">
+<meta name="description" content="AnJo Ateliê — quadros autorais e personalizados, feitos à mão para transformar histórias em arte.">
+<meta property="og:title" content="AnJo Ateliê — Arte que conta histórias">
+<meta property="og:description" content="Obras autorais e quadros personalizados feitos à mão.">
+<title>AnJo Ateliê — Arte que conta histórias</title>
+<link rel="icon" href="logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
-
 :root{
-  --ink:#171512;--paper:#f4f0e8;--cream:#fbf9f4;--muted:#756e63;
-  --line:rgba(23,21,18,.13);--gold:#b9945b;--gold2:#d9bc88;
-  --dark:#12110f;--white:#fffdf8;--radius:28px;
+ --paper:#f5f1e9;--paper2:#eee7dc;--white:#fffdf9;--ink:#171513;--muted:#756f66;
+ --line:rgba(23,21,19,.12);--gold:#a7834f;--gold2:#d2b47c;--dark:#151311;
+ --radius:24px;--ease:cubic-bezier(.22,.8,.22,1)
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-button,input,textarea,select{font:inherit}
-img{max-width:100%;display:block}
-.container{width:min(1180px,calc(100% - 40px));margin:auto}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.19em;font-size:10px;font-weight:700;color:var(--gold)}
-.eyebrow:before{content:"";width:26px;height:1px;background:var(--gold)}
-h1,h2,h3,.serif{font-family:"Cormorant Garamond",serif}
-h2{font-size:clamp(42px,5vw,72px);line-height:.92;font-weight:500;letter-spacing:-.035em}
-p{line-height:1.75;color:var(--muted)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;border:1px solid transparent;padding:15px 22px;border-radius:999px;font-weight:700;font-size:13px;transition:.3s;cursor:pointer}
-.btn-dark{background:var(--ink);color:var(--white)}
-.btn-dark:hover{transform:translateY(-3px);box-shadow:0 15px 30px rgba(0,0,0,.14)}
-.btn-light{background:rgba(255,255,255,.7);border-color:var(--line)}
-.btn-light:hover{background:#fff}
-header{position:fixed;z-index:50;top:0;left:0;width:100%;padding:17px 0;transition:.35s}
-header.scrolled{background:rgba(244,240,232,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:"Cormorant Garamond",serif;font-weight:700;font-size:28px;letter-spacing:.02em}
-.logo span{color:var(--gold)}
-nav{display:flex;gap:28px;font-size:12px;color:#4e4941}
-nav a{position:relative}
-nav a:after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--ink);transition:.3s}
-nav a:hover:after{width:100%}
-.nav-cta{padding:11px 17px;background:var(--ink);color:#fff;border-radius:999px;font-size:11px;font-weight:700}
-.menu{display:none;background:none;border:0;font-size:25px}
-.hero{min-height:100vh;padding:145px 0 60px;display:grid;grid-template-columns:1.03fr .97fr;gap:70px;align-items:center}
-.hero-copy h1{font-size:clamp(68px,8.4vw,128px);line-height:.78;letter-spacing:-.065em;font-weight:500;margin:25px 0 34px}
-.hero-copy h1 em{font-weight:400;color:#8b7353}
-.hero-copy p{max-width:560px;font-size:16px}
-.hero-actions{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
-.hero-meta{display:flex;gap:28px;margin-top:42px;padding-top:22px;border-top:1px solid var(--line)}
-.hero-meta strong{display:block;font-family:"Cormorant Garamond";font-size:24px;font-weight:600}
-.hero-meta span{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
-.art-stage{position:relative;height:min(650px,72vh);min-height:500px}
-.art-frame{position:absolute;inset:3% 7% 5% 8%;background:#d9d0c0;padding:13px;box-shadow:35px 35px 80px rgba(52,43,30,.2);transform:rotate(2deg)}
-.art-inner{height:100%;background:
-radial-gradient(circle at 67% 25%,#e5b96e 0 7%,transparent 7.5%),
-radial-gradient(circle at 32% 61%,#9a6b4e 0 15%,transparent 15.5%),
-linear-gradient(135deg,#40352d 0 23%,#b9a083 23% 48%,#e8ddc8 48% 73%,#69503d 73%)}
-.art-inner:before{content:"";display:block;width:55%;height:70%;margin:12% auto;background:linear-gradient(160deg,#b08b67,#e7d7bd 50%,#5c4434);border-radius:45% 45% 15% 15%;filter:contrast(1.05)}
-.art-tag{position:absolute;right:0;bottom:8%;background:var(--dark);color:#fff;padding:18px 22px;max-width:190px;box-shadow:0 18px 35px rgba(0,0,0,.2)}
-.art-tag small{color:#cbb38d;text-transform:uppercase;letter-spacing:.15em;font-size:8px}
-.art-tag b{display:block;font-family:"Cormorant Garamond";font-size:24px;font-weight:500;margin-top:6px}
-.ticker{background:var(--dark);color:#eee;overflow:hidden;padding:14px 0;border-top:1px solid #292622;border-bottom:1px solid #292622}
-.ticker-track{display:flex;width:max-content;animation:marquee 25s linear infinite}
-.ticker span{font-family:"Cormorant Garamond";font-size:20px;white-space:nowrap;margin:0 25px}
-.ticker i{color:var(--gold2);font-style:normal}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased}
+body.lock{overflow:hidden}
+img{display:block;max-width:100%}
+button,a,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+::selection{background:#d5c09d;color:#171513}
+.container{width:min(1180px,calc(100% - 40px));margin-inline:auto}
+.serif{font-family:"Cormorant Garamond",serif}
+.kicker{display:flex;align-items:center;gap:10px;color:var(--gold);font-size:10px;line-height:1;text-transform:uppercase;letter-spacing:.19em;font-weight:700}
+.kicker:before{content:"";width:25px;height:1px;background:currentColor}
+h1,h2,h3,p{margin:0}
+h2{font:500 clamp(48px,6.2vw,82px)/.88 "Cormorant Garamond",serif;letter-spacing:-.045em}
+p{color:var(--muted);line-height:1.75}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 20px;border-radius:999px;border:1px solid var(--line);font-size:12px;font-weight:700;transition:transform .35s var(--ease),box-shadow .35s,background .35s}
+.btn:hover{transform:translateY(-3px)}
+.btn-dark{background:var(--ink);color:#fff;border-color:var(--ink);box-shadow:0 14px 35px rgba(23,21,19,.13)}
+.btn-ghost{background:rgba(255,255,255,.55);backdrop-filter:blur(12px)}
+.btn-gold{background:var(--gold);color:#fff;border-color:var(--gold)}
+header{position:fixed;z-index:80;top:0;left:0;right:0;padding:14px 0;transition:.35s var(--ease)}
+header.is-scrolled{background:rgba(245,241,233,.82);backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--line)}
+.nav{height:54px;display:flex;align-items:center;justify-content:space-between}
+.brand{width:92px;height:48px;background:#fff;border-radius:9px;overflow:hidden;display:block}
+.brand img{width:100%;height:100%;object-fit:contain}
+.navlinks{display:flex;align-items:center;gap:28px;font-size:11px;color:#514c45}
+.navlinks a{position:relative;padding:10px 0}
+.navlinks a:after{content:"";position:absolute;left:0;right:100%;bottom:4px;height:1px;background:var(--ink);transition:.3s}
+.navlinks a:hover:after{right:0}
+.menu{display:none;border:0;background:transparent;font-size:25px;width:44px;height:44px}
+.hero{min-height:100svh;padding:142px 0 75px;display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center;position:relative;overflow:hidden}
+.hero-copy{position:relative;z-index:2}
+.hero h1{font:500 clamp(70px,9vw,132px)/.76 "Cormorant Garamond",serif;letter-spacing:-.065em;margin:28px 0 34px}
+.hero h1 em{font-weight:400;color:#89704d}
+.hero-intro{font-size:16px;max-width:560px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.stats{display:flex;gap:0;margin-top:42px;border-top:1px solid var(--line);max-width:560px}
+.stat{flex:1;padding-top:18px}
+.stat+ .stat{border-left:1px solid var(--line);padding-left:18px}
+.stat b{display:block;font:600 28px/1 "Cormorant Garamond",serif}
+.stat span{display:block;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.12em;margin-top:5px}
+.hero-art{height:min(680px,72vh);min-height:510px;position:relative}
+.hero-photo{position:absolute;inset:2% 7% 5% 5%;padding:12px;background:#d8d0c3;box-shadow:35px 40px 90px rgba(45,36,25,.22);transform:rotate(2.3deg);transition:transform .9s var(--ease)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-art:hover .hero-photo{transform:rotate(0) scale(1.012)}
+.hero-label{position:absolute;z-index:3;right:0;bottom:8%;width:205px;background:var(--dark);color:#fff;padding:18px 20px;box-shadow:0 20px 45px rgba(0,0,0,.22)}
+.hero-label small{display:block;color:var(--gold2);font-size:8px;text-transform:uppercase;letter-spacing:.16em}
+.hero-label strong{display:block;font:500 25px/1.03 "Cormorant Garamond",serif;margin-top:8px}
+.hero-note{position:absolute;left:-6px;top:12%;font:500 17px "Cormorant Garamond";writing-mode:vertical-rl;color:#9b917f;letter-spacing:.08em}
+.hero:after{content:"";position:absolute;width:650px;height:650px;right:-300px;top:120px;border-radius:50%;background:radial-gradient(circle,rgba(167,131,79,.16),transparent 68%);pointer-events:none}
+.marquee{background:var(--dark);color:#f5f0e8;overflow:hidden;border-block:1px solid #2d2a25}
+.marquee-track{display:flex;width:max-content;animation:marquee 26s linear infinite}
+.marquee span{white-space:nowrap;padding:14px 24px;font:500 19px "Cormorant Garamond",serif}
+.marquee i{font-style:normal;color:var(--gold2);margin-left:28px}
 @keyframes marquee{to{transform:translateX(-50%)}}
-section{padding:120px 0}
-.process{background:var(--cream)}
-.section-head{display:flex;justify-content:space-between;gap:50px;align-items:end;margin-bottom:60px}
-.section-head p{max-width:390px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
-.step{padding:30px 28px 20px 0;border-right:1px solid var(--line);min-height:260px}
-.step:not(:first-child){padding-left:28px}
-.step:last-child{border-right:0}
-.step-no{font-size:11px;color:var(--gold);font-weight:700}
-.step h3{font-size:36px;font-weight:500;margin:42px 0 12px}
-.step p{font-size:13px;max-width:310px}
+section{padding:125px 0}
+.section-top{display:grid;grid-template-columns:1fr .7fr;gap:70px;align-items:end;margin-bottom:60px}
+.section-top p{max-width:410px;font-size:13px}
+.process{background:var(--white)}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.process-card{min-height:310px;padding:30px 30px 25px 0;border-right:1px solid var(--line);position:relative}
+.process-card+.process-card{padding-left:30px}
+.process-card:last-child{border-right:0}
+.process-card:after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--gold);transition:.6s var(--ease)}
+.process-card:hover:after{right:0}
+.number{font-size:10px;color:var(--gold);font-weight:700;letter-spacing:.12em}
+.process-card h3{font:500 42px/.9 "Cormorant Garamond",serif;margin:48px 0 15px}
+.process-card p{font-size:12px;max-width:300px}
 .gallery{background:var(--paper)}
-.gallery-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-template-rows:280px 280px;gap:15px}
-.work{position:relative;overflow:hidden;background:#c7b9a5;min-height:260px}
-.work:first-child{grid-row:span 2}
-.work:nth-child(2){background:linear-gradient(135deg,#253b36,#d5bf8f 55%,#59463a)}
-.work:nth-child(3){background:linear-gradient(145deg,#eadfc9,#987a5d 55%,#332a24)}
-.work:nth-child(4){background:linear-gradient(140deg,#7b2e28,#d59c72 48%,#33261e)}
-.work:nth-child(5){background:linear-gradient(135deg,#d9c6a7,#53656b 52%,#22292a)}
-.work:before{content:"";position:absolute;inset:8% 13%;border:1px solid rgba(255,255,255,.28);transform:rotate(-2deg)}
-.work:after{content:"";position:absolute;width:45%;height:65%;left:27%;top:18%;background:radial-gradient(circle at 50% 30%,rgba(255,255,255,.8) 0 3%,transparent 3.5%),linear-gradient(135deg,rgba(255,255,255,.3),transparent 55%);border-radius:50% 50% 20% 20%;opacity:.8}
-.work-info{position:absolute;z-index:2;left:20px;bottom:18px;color:#fff}
-.work-info small{font-size:9px;letter-spacing:.16em;text-transform:uppercase}
-.work-info h3{font-size:28px;font-weight:500}
+.gallery-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:42px}
+.gallery-head p{max-width:350px;font-size:12px}
+.gallery-grid{display:grid;grid-template-columns:1.25fr .75fr .75fr;grid-template-rows:330px 330px;gap:14px}
+.art-card{position:relative;overflow:hidden;background:#ccc;cursor:pointer;isolation:isolate}
+.art-card:first-child{grid-row:span 2}
+.art-card:nth-child(4){grid-column:2}
+.art-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),filter .5s}
+.art-card:hover img{transform:scale(1.055);filter:saturate(1.04)}
+.art-card:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.7));z-index:1}
+.art-meta{position:absolute;z-index:2;left:22px;right:22px;bottom:20px;color:#fff}
+.art-meta small{font-size:8px;text-transform:uppercase;letter-spacing:.15em}
+.art-meta h3{font:500 31px/1 "Cormorant Garamond",serif;margin-top:5px}
+.view-all{margin-top:18px;display:flex;justify-content:flex-end}
+.view-all a{font-size:11px;font-weight:700;border-bottom:1px solid var(--ink);padding-bottom:5px}
 .custom{background:var(--dark);color:#fff}
-.custom p{color:#aaa39a}
-.custom-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:90px;align-items:start}
-.custom h2{margin-top:20px;color:#fff}
-.custom .eyebrow{color:var(--gold2)}
-.custom-form{background:#f6f1e7;color:var(--ink);padding:35px;border-radius:var(--radius)}
-.form-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
-.form-top span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.13em}
-.field{margin-bottom:18px}
-.field label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin-bottom:7px}
-.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#fffaf2;padding:14px 15px;outline:none;border-radius:13px;transition:.2s}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(185,148,91,.12)}
-.field textarea{min-height:100px;resize:vertical}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.check{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--muted);margin:8px 0 22px}
-.check input{margin-top:3px}
-.form-btn{width:100%;border:0;background:var(--ink);color:#fff;padding:16px;border-radius:13px;font-weight:700;cursor:pointer}
-.about{background:#ded5c5}
-.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:90px;align-items:center}
-.about-quote{font-family:"Cormorant Garamond";font-size:45px;line-height:1.03;max-width:480px}
-.about-copy p{margin:22px 0}
-.about-card{margin-top:35px;border-top:1px solid var(--line);padding-top:22px;font-family:"Cormorant Garamond";font-size:22px}
-.pricing{background:var(--cream)}
-.price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:50px}
-.price{border:1px solid var(--line);padding:28px;border-radius:20px;background:#fffdf8;transition:.3s}
-.price:hover{transform:translateY(-7px);box-shadow:0 20px 45px rgba(40,30,15,.08)}
-.price small{text-transform:uppercase;letter-spacing:.14em;color:var(--gold);font-weight:700}
-.price h3{font-size:43px;font-weight:500;margin:18px 0 4px}
-.price strong{font-size:28px;font-family:"Cormorant Garamond"}
-.price p{font-size:11px;margin-top:5px}
-.cta{padding:130px 0;background:radial-gradient(circle at 75% 30%,#4c4236,#171512 48%);color:#fff}
-.cta-inner{text-align:center;max-width:780px;margin:auto}
-.cta h2{font-size:clamp(55px,7vw,100px);margin:20px 0}
-.cta p{max-width:550px;margin:0 auto;color:#bcb5ab}
-footer{background:#11100e;color:#aaa;padding:50px 0 28px;border-top:1px solid #282521}
+.custom-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:85px;align-items:start}
+.custom h2{margin-top:22px}
+.custom .kicker{color:var(--gold2)}
+.custom-copy p{color:#aaa49b;font-size:13px;margin-top:25px;max-width:430px}
+.custom-points{margin-top:35px;display:grid;gap:13px}
+.custom-point{display:flex;gap:12px;align-items:flex-start;color:#c5bfb7;font-size:11px}
+.custom-point b{width:20px;height:20px;display:grid;place-items:center;border:1px solid #5a554e;border-radius:50%;font-size:9px;color:var(--gold2)}
+.order-card{background:#f8f3e9;color:var(--ink);padding:34px;border-radius:26px;box-shadow:0 35px 100px rgba(0,0,0,.25)}
+.order-head{display:flex;justify-content:space-between;align-items:end;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:23px}
+.order-head strong{font:600 29px "Cormorant Garamond",serif}
+.order-head span{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:7px}
+.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);background:#fffdf9;color:var(--ink);outline:0;border-radius:12px;padding:14px 14px;transition:.25s}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(167,131,79,.11)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.consent{display:flex;gap:9px;color:var(--muted);font-size:10px;line-height:1.5;margin:6px 0 20px}
+.consent input{margin-top:2px}
+.order-submit{width:100%;height:52px;border:0;border-radius:13px;background:var(--ink);color:#fff;font-weight:700;font-size:12px;transition:.3s}
+.order-submit:hover{transform:translateY(-2px);box-shadow:0 15px 30px rgba(0,0,0,.18)}
+.story{background:var(--paper2)}
+.story-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:95px;align-items:center}
+.story-visual{position:relative;padding:24px;background:#e4dbcd}
+.story-visual img{width:100%;height:430px;object-fit:cover}
+.story-stamp{position:absolute;right:-20px;bottom:25px;background:var(--dark);color:#fff;padding:18px 22px}
+.story-stamp small{display:block;color:var(--gold2);font-size:8px;text-transform:uppercase;letter-spacing:.16em}
+.story-stamp strong{display:block;font:500 28px "Cormorant Garamond",serif;margin-top:5px}
+.story-copy p{max-width:510px;font-size:13px;margin-top:23px}
+.verse{border-top:1px solid var(--line);margin-top:30px;padding-top:20px;font:500 22px/1.1 "Cormorant Garamond",serif}
+.verse small{display:block;font:600 9px "DM Sans";color:var(--gold);text-transform:uppercase;letter-spacing:.13em;margin-top:9px}
+.prices{background:var(--white)}
+.price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.price{background:#fffdf9;border:1px solid var(--line);border-radius:20px;padding:27px;position:relative;overflow:hidden;transition:.4s var(--ease)}
+.price:hover{transform:translateY(-7px);box-shadow:0 22px 50px rgba(35,27,18,.08)}
+.price:before{content:"";position:absolute;width:130px;height:130px;right:-80px;top:-80px;border-radius:50%;background:rgba(167,131,79,.1);transition:.5s}
+.price:hover:before{transform:scale(2.3)}
+.price small{position:relative;color:var(--gold);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.14em}
+.price h3{position:relative;font:500 43px/1 "Cormorant Garamond",serif;margin:22px 0 3px}
+.price p{position:relative;font-size:10px}
+.brand-story{background:#f0ebe2}
+.brand-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:85px;align-items:center}
+.brand-box{background:#fff;padding:28px;border:1px solid var(--line);border-radius:25px;box-shadow:0 25px 65px rgba(35,27,18,.07)}
+.brand-box img{height:250px;width:100%;object-fit:contain}
+.brand-copy p{max-width:520px;font-size:13px;margin-top:23px}
+.cta{background:var(--dark);color:#fff;text-align:center;padding:140px 0;position:relative;overflow:hidden}
+.cta:before,.cta:after{content:"";position:absolute;border:1px solid rgba(210,180,124,.13);border-radius:50%;pointer-events:none}
+.cta:before{width:700px;height:700px;left:50%;top:50%;transform:translate(-50%,-50%)}
+.cta:after{width:470px;height:470px;left:50%;top:50%;transform:translate(-50%,-50%)}
+.cta-inner{position:relative;z-index:1}
+.cta h2{font-size:clamp(57px,7vw,100px);max-width:850px;margin:23px auto 20px}
+.cta p{color:#aaa49b;max-width:500px;margin:auto;font-size:13px}
+footer{background:#11100e;color:#a9a39a;padding:52px 0 25px}
 .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:50px;padding-bottom:45px;border-bottom:1px solid #2b2823}
-footer .logo{color:#fff}
-footer p{font-size:12px;max-width:320px;margin-top:15px}
-footer h4{color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:.15em;margin-bottom:15px}
-footer a{display:block;font-size:12px;margin:9px 0}
-.copyright{display:flex;justify-content:space-between;padding-top:22px;font-size:10px;color:#6f6a62}
-.toast{position:fixed;z-index:100;right:20px;bottom:20px;background:#191713;color:#fff;padding:15px 18px;border-radius:13px;box-shadow:0 15px 40px #0004;transform:translateY(120px);opacity:0;transition:.35s;font-size:12px}
-.toast.show{transform:none;opacity:1}
-.reveal{opacity:0;transform:translateY(24px);transition:.7s ease}
+.footer-grid h4{color:#fff;font-size:9px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 16px}
+.footer-grid a,.footer-grid p{font-size:11px;margin:8px 0;color:#a9a39a}
+.footer-brand p{max-width:290px;line-height:1.7;margin-top:15px}
+.copyright{display:flex;justify-content:space-between;padding-top:20px;font-size:9px;color:#69645e}
+.mobile-cta{display:none}
+.lightbox{position:fixed;inset:0;z-index:150;background:rgba(8,7,6,.94);backdrop-filter:blur(16px);display:none;align-items:center;justify-content:center;padding:20px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:min(94vw,1000px);max-height:86vh;object-fit:contain;box-shadow:0 30px 100px #000}
+.close-lightbox{position:absolute;top:18px;right:18px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:24px}
+.light-caption{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#fff;font:500 22px "Cormorant Garamond",serif;white-space:nowrap}
+.toast{position:fixed;z-index:200;left:50%;bottom:25px;transform:translate(-50%,120px);opacity:0;background:#171513;color:#fff;padding:14px 18px;border-radius:12px;font-size:11px;box-shadow:0 20px 50px #0005;transition:.4s}
+.toast.show{transform:translate(-50%,0);opacity:1}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .reveal.visible{opacity:1;transform:none}
+.cursor-glow{display:none}
+@media(min-width:901px){
+ .cursor-glow{display:block;position:fixed;z-index:0;pointer-events:none;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(167,131,79,.08),transparent 70%);transform:translate(-50%,-50%);opacity:0;transition:opacity .3s}
+}
 @media(max-width:900px){
-  nav{display:none}.menu{display:block}.nav-cta{display:none}
-  .hero{grid-template-columns:1fr;gap:35px;padding-top:125px}
-  .hero-copy h1{font-size:76px}
-  .art-stage{height:510px;min-height:0}
-  .steps,.price-grid{grid-template-columns:1fr 1fr}
-  .custom-grid,.about-grid{grid-template-columns:1fr;gap:45px}
-  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:260px 220px 220px}
-  .work:first-child{grid-row:auto;grid-column:span 2}
-  .footer-grid{grid-template-columns:1fr 1fr}
+ .container{width:min(100% - 32px,1180px)}
+ .navlinks{display:none}
+ .nav> .btn{display:none}
+ .menu{display:block}
+ .hero{grid-template-columns:1fr;gap:34px;padding-top:115px;min-height:auto}
+ .hero h1{font-size:76px}
+ .hero-art{height:560px;min-height:0}
+ .section-top{grid-template-columns:1fr;gap:22px}
+ .process-grid{grid-template-columns:1fr}
+ .process-card{min-height:0;border-right:0;border-bottom:1px solid var(--line);padding:28px 0!important}
+ .process-card:last-child{border-bottom:0}
+ .process-card h3{margin-top:30px}
+ .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:300px 220px 260px}
+ .art-card:first-child{grid-column:span 2;grid-row:auto}
+ .art-card:nth-child(4){grid-column:auto}
+ .custom-grid,.story-grid,.brand-grid{grid-template-columns:1fr;gap:48px}
+ .price-grid{grid-template-columns:1fr 1fr}
+ .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
-  .container{width:min(100% - 28px,1180px)}
-  section{padding:80px 0}
-  .hero{padding-top:110px}
-  .hero-copy h1{font-size:64px}
-  .hero-meta{gap:15px}.hero-meta strong{font-size:20px}
-  .art-stage{height:430px}
-  .art-frame{inset:4% 2% 6% 2%}
-  .art-tag{right:-4px;bottom:5%;padding:14px}
-  .section-head{display:block;margin-bottom:40px}.section-head p{margin-top:20px}
-  .steps,.price-grid{grid-template-columns:1fr}
-  .step{border-right:0;border-bottom:1px solid var(--line);min-height:0;padding:25px 0!important}
-  .step h3{margin-top:25px}
-  .gallery-grid{grid-template-columns:1fr;grid-template-rows:320px 220px 220px 220px 220px}
-  .work:first-child{grid-column:auto}
-  .two{grid-template-columns:1fr}
-  .custom-form{padding:22px}
-  .about-quote{font-size:38px}
-  .footer-grid{grid-template-columns:1fr}
-  .copyright{display:block}.copyright span{display:block;margin-top:8px}
+ body{padding-bottom:78px}
+ .container{width:calc(100% - 28px)}
+ header{padding-top:max(10px,env(safe-area-inset-top))}
+ .nav{height:50px}
+ .brand{width:76px;height:42px}
+ .hero{padding:100px 0 55px}
+ .hero h1{font-size:61px;line-height:.79;margin:23px 0 27px}
+ .hero-intro{font-size:14px;line-height:1.7}
+ .hero-actions{display:grid;grid-template-columns:1fr;gap:9px}
+ .hero-actions .btn{width:100%}
+ .stats{margin-top:32px}
+ .stat b{font-size:23px}
+ .stat span{font-size:8px}
+ .hero-art{height:465px;margin-top:2px}
+ .hero-photo{inset:4% 2% 7% 1%;padding:8px}
+ .hero-label{right:-1px;bottom:3%;width:175px;padding:14px 16px}
+ .hero-label strong{font-size:22px}
+ .hero-note{display:none}
+ section{padding:82px 0}
+ h2{font-size:51px}
+ .section-top{margin-bottom:38px}
+ .section-top p{font-size:12px}
+ .marquee span{font-size:17px;padding:13px 18px}
+ .process-card h3{font-size:37px}
+ .gallery-head{display:block;margin-bottom:28px}
+ .gallery-head p{margin-top:17px}
+ .gallery-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:310px 190px 235px;gap:8px}
+ .art-card:first-child{grid-column:span 2}
+ .art-meta{left:14px;right:12px;bottom:14px}
+ .art-meta h3{font-size:25px}
+ .art-meta small{font-size:7px}
+ .custom-grid{gap:38px}
+ .order-card{padding:21px 16px;border-radius:20px}
+ .order-head strong{font-size:26px}
+ .two{grid-template-columns:1fr}
+ .field input,.field textarea,.field select{font-size:13px;padding:13px}
+ .story-visual{padding:10px}
+ .story-visual img{height:350px}
+ .story-stamp{right:-7px;bottom:12px;padding:14px 16px}
+ .story-stamp strong{font-size:24px}
+ .price-grid{grid-template-columns:1fr 1fr;gap:8px}
+ .price{padding:21px 17px;border-radius:17px}
+ .price h3{font-size:36px}
+ .brand-grid{gap:34px}
+ .brand-box{padding:14px;border-radius:18px}
+ .brand-box img{height:185px}
+ .cta{padding:100px 0}
+ .cta h2{font-size:58px}
+ .footer-grid{grid-template-columns:1fr 1fr;gap:30px 20px}
+ .footer-brand{grid-column:span 2}
+ .copyright{display:block;line-height:1.7}
+ .copyright span{display:block}
+ .mobile-cta{display:flex;position:fixed;z-index:100;bottom:0;left:0;right:0;padding:9px max(12px,env(safe-area-inset-right)) max(9px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));background:rgba(245,241,233,.93);backdrop-filter:blur(18px);border-top:1px solid var(--line)}
+ .mobile-cta a{width:100%;height:50px;border-radius:14px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;box-shadow:0 10px 25px rgba(0,0,0,.12)}
 }
-</style>
-
-<style id="anjo-21st-upgrade">
-body{--gold:#c7a36a;--gold2:#f0d39c}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E")}
-header{transition:background .35s,box-shadow .35s,transform .35s}
-header.scrolled{box-shadow:0 8px 35px rgba(0,0,0,.07)}
-.hero{position:relative}
-.hero:before{content:"";position:absolute;width:600px;height:600px;right:-220px;top:100px;border-radius:50%;background:radial-gradient(circle,rgba(199,163,106,.17),transparent 68%);filter:blur(10px);pointer-events:none}
-.hero-copy,.art-stage{position:relative;z-index:1}
-.shimmer-btn{position:relative;overflow:hidden}
-.shimmer-btn:before{content:"";position:absolute;inset:-2px;background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.45) 45%,transparent 65%);transform:translateX(-130%);animation:shimmer 3.4s infinite}
-.shimmer-btn>*{position:relative;z-index:1}
-@keyframes shimmer{55%,100%{transform:translateX(130%)}}
-.art-frame{transition:transform .8s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
-.art-stage:hover .art-frame{transform:rotate(0deg) scale(1.018);box-shadow:40px 45px 100px rgba(52,43,30,.25)}
-.work{cursor:pointer;transition:transform .5s,box-shadow .5s}
-.work:hover{transform:translateY(-8px) scale(.995);box-shadow:0 30px 60px rgba(30,24,17,.16)}
-.work:before{transition:inset .5s,opacity .5s}
-.work:hover:before{inset:5%;opacity:.9}
-.work-info{transform:translateY(4px);transition:.4s}
-.work:hover .work-info{transform:none}
-.step{position:relative;overflow:hidden}
-.step:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--gold);transition:.45s}
-.step:hover:after{width:100%}
-.price{position:relative;overflow:hidden}
-.price:before{content:"";position:absolute;width:130px;height:130px;right:-80px;top:-80px;border-radius:50%;background:rgba(199,163,106,.11);transition:.4s}
-.price:hover:before{transform:scale(2.3)}
-.about{position:relative;overflow:hidden}
-.about:after{content:"ANJO";position:absolute;right:-20px;bottom:-80px;font:700 240px/1 "Cormorant Garamond";color:rgba(255,255,255,.17);pointer-events:none}
-.custom-form{box-shadow:0 30px 80px rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.5)}
-.form-btn{position:relative;overflow:hidden;transition:.3s}
-.form-btn:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(0,0,0,.18)}
-.cta{position:relative;overflow:hidden}
-.cta:before{content:"";position:absolute;width:500px;height:500px;left:-250px;top:-250px;border:1px solid rgba(199,163,106,.15);border-radius:50%;box-shadow:0 0 0 70px rgba(199,163,106,.025),0 0 0 140px rgba(199,163,106,.02)}
-@media(max-width:600px){.hero:before{width:350px;height:350px;right:-180px}.about:after{font-size:140px}}
-</style>
-
-<style>
-.real-art{padding:10px;background:#d9d0c0;overflow:hidden}
-.real-art img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
-.art-stage:hover .real-art img{transform:scale(1.045)}
-.gallery .work.real-photo{background:#111;overflow:hidden}
-.gallery .work.real-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.2,1);filter:saturate(.95)}
-.gallery .work.real-photo:hover img{transform:scale(1.06)}
-.gallery .work.real-photo:after{display:none}
-.gallery .work.real-photo .work-info{z-index:4;text-shadow:0 2px 14px #000}
-.photo-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.7));z-index:2}
-.art-modal{position:fixed;inset:0;background:rgba(8,7,6,.92);backdrop-filter:blur(12px);z-index:200;display:none;align-items:center;justify-content:center;padding:25px}
-.art-modal.open{display:flex}
-.art-modal img{max-width:min(92vw,900px);max-height:88vh;object-fit:contain;border-radius:8px;box-shadow:0 30px 100px #000}
-.art-modal-close{position:absolute;right:25px;top:20px;width:44px;height:44px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:white;border-radius:50%;font-size:22px;cursor:pointer}
-.art-modal-caption{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);color:#fff;font:500 20px "Cormorant Garamond";white-space:nowrap}
+@media(max-width:380px){
+ .hero h1{font-size:55px}
+ .hero-art{height:420px}
+ .gallery-grid{grid-template-rows:280px 180px 210px}
+ .price h3{font-size:32px}
+}
 </style>
 </head>
 <body>
+<div class="cursor-glow" id="cursorGlow"></div>
 
 <header id="header">
-  <div class="container nav">
-    <a href="#" class="logo">AnJo<span>.</span></a>
-    <nav>
-      <a href="#processo">Processo</a>
-      <a href="#galeria">Obras</a>
-      <a href="#encomenda">Personalize</a>
-      <a href="#sobre">Ateliê</a>
-    </nav>
-    <a class="nav-cta" href="#encomenda">CRIAR MINHA ARTE ↗</a>
-    <button class="menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
-  </div>
+ <div class="container nav">
+  <a class="brand" href="#top"><img src="logo.jpg" alt="AnJo Ateliê"></a>
+  <nav class="navlinks">
+   <a href="#processo">Processo</a>
+   <a href="#obras">Obras</a>
+   <a href="#personalize">Personalize</a>
+   <a href="#atelie">O Ateliê</a>
+  </nav>
+  <a class="btn btn-dark" href="#personalize">Criar minha arte <span>↗</span></a>
+  <button class="menu" id="menuBtn" aria-label="Abrir menu">☰</button>
+ </div>
 </header>
 
-<main>
+<main id="top">
 <section class="hero container">
-  <div class="hero-copy reveal">
-    <span class="eyebrow">Arte personalizada · São Paulo</span>
-    <h1>Seu momento.<br><em>Nossa arte.</em></h1>
-    <p>Transformamos memórias, ideias e sentimentos em obras feitas à mão — pensadas para existir no seu espaço e carregar uma história que é só sua.</p>
-    <div class="hero-actions">
-      <a href="#encomenda" class="btn btn-dark shimmer-btn">Quero criar meu quadro ↗</a>
-      <a href="#galeria" class="btn btn-light">Explorar obras</a>
-    </div>
-    <div class="hero-meta">
-      <div><strong>100%</strong><span>feito à mão</span></div>
-      <div><strong>Única</strong><span>cada obra</span></div>
-      <div><strong>+1</strong><span>história criada</span></div>
-    </div>
+ <div class="hero-copy reveal">
+  <span class="kicker">Arte autoral · São Paulo</span>
+  <h1>Uma história.<br><em>Uma obra.</em></h1>
+  <p class="hero-intro">Quadros feitos à mão para transformar memórias, fé, sentimentos e ideias em algo que você possa colocar na parede — e sentir de novo todos os dias.</p>
+  <div class="hero-actions">
+   <a class="btn btn-dark" href="#personalize">Quero criar um quadro <span>↗</span></a>
+   <a class="btn btn-ghost" href="#obras">Ver obras</a>
   </div>
-  <div class="art-stage reveal">
-    <div class="art-frame real-art"><img src="obra-1.jpg" alt="Obra original do AnJo Ateliê"></div>
-    <div class="art-tag"><small>Peça em destaque</small><b>Arte que começa com uma ideia.</b></div>
+  <div class="stats">
+   <div class="stat"><b>100%</b><span>feito à mão</span></div>
+   <div class="stat"><b>Única</b><span>cada peça</span></div>
+   <div class="stat"><b>∞</b><span>possibilidades</span></div>
   </div>
+ </div>
+ <div class="hero-art reveal">
+  <div class="hero-note">ANJO ATELIÊ · ORIGINAL</div>
+  <div class="hero-photo"><img src="obra-abstrata.png" alt="Obra original AnJo Ateliê em preto e branco"></div>
+  <div class="hero-label"><small>Obra em destaque</small><strong>Arte que começa com uma ideia.</strong></div>
+ </div>
 </section>
 
-<div class="ticker"><div class="ticker-track">
-  <span>FEITO À MÃO <i>✦</i></span><span>OBRAS ÚNICAS <i>✦</i></span><span>PERSONALIZAÇÃO <i>✦</i></span><span>ARTE COM PROPÓSITO <i>✦</i></span>
-  <span>FEITO À MÃO <i>✦</i></span><span>OBRAS ÚNICAS <i>✦</i></span><span>PERSONALIZAÇÃO <i>✦</i></span><span>ARTE COM PROPÓSITO <i>✦</i></span>
+<div class="marquee"><div class="marquee-track">
+ <span>FEITO À MÃO <i>✦</i></span><span>OBRAS AUTORAIS <i>✦</i></span><span>PERSONALIZAÇÃO <i>✦</i></span><span>ARTE COM PROPÓSITO <i>✦</i></span>
+ <span>FEITO À MÃO <i>✦</i></span><span>OBRAS AUTORAIS <i>✦</i></span><span>PERSONALIZAÇÃO <i>✦</i></span><span>ARTE COM PROPÓSITO <i>✦</i></span>
 </div></div>
 
 <section id="processo" class="process">
-<div class="container">
-  <div class="section-head reveal">
-    <div><span class="eyebrow">Nosso processo</span><h2>Da ideia<br>ao quadro.</h2></div>
-    <p>Você não precisa saber falar sobre arte. Basta contar o que sente, imagina ou deseja. A gente transforma isso em uma composição com personalidade.</p>
+ <div class="container">
+  <div class="section-top reveal">
+   <div><span class="kicker">Como funciona</span><h2>Da primeira ideia<br>à sua parede.</h2></div>
+   <p>Você não precisa saber explicar de arte. Conte o que imaginou, mostre uma referência ou simplesmente fale o que gostaria de sentir ao olhar para a peça.</p>
   </div>
-  <div class="steps">
-    <article class="step reveal"><span class="step-no">01 / CONVERSA</span><h3>Você conta.</h3><p>Tema, cores, ambiente, tamanho, referência ou simplesmente uma sensação. Começamos de onde você estiver.</p></article>
-    <article class="step reveal"><span class="step-no">02 / CRIAÇÃO</span><h3>Nós criamos.</h3><p>Interpretamos sua ideia, definimos composição e detalhes e apresentamos a proposta antes da produção.</p></article>
-    <article class="step reveal"><span class="step-no">03 / ENTREGA</span><h3>A arte acontece.</h3><p>Depois da aprovação, produzimos sua peça com cuidado para que ela chegue pronta para fazer parte do seu espaço.</p></article>
+  <div class="process-grid">
+   <article class="process-card reveal"><span class="number">01 / CONVERSA</span><h3>Você conta.</h3><p>Entendemos a história, o ambiente, as cores, o tamanho e aquilo que precisa estar presente na obra.</p></article>
+   <article class="process-card reveal"><span class="number">02 / CRIAÇÃO</span><h3>Nós traduzimos.</h3><p>Transformamos sua ideia em uma composição autoral. A proposta é alinhada com você antes da produção.</p></article>
+   <article class="process-card reveal"><span class="number">03 / ENTREGA</span><h3>A arte acontece.</h3><p>Depois da aprovação, produzimos sua peça com atenção aos detalhes e combinamos a entrega.</p></article>
   </div>
-</div>
+ </div>
 </section>
 
-<section id="galeria" class="gallery">
-<div class="container">
-  <div class="section-head reveal">
-    <div><span class="eyebrow">Curadoria AnJo</span><h2>Obras que<br>já existem.</h2></div>
-    <p>Peças finalizadas para quem encontrou uma obra antes mesmo de imaginar uma. Escolha sua favorita e fale conosco.</p>
+<section id="obras" class="gallery">
+ <div class="container">
+  <div class="gallery-head reveal">
+   <div><span class="kicker">Portfólio</span><h2>Obras que<br>já ganharam vida.</h2></div>
+   <p>Algumas peças que passaram pelas mãos do AnJo. Cada uma tem sua própria linguagem — e nenhuma é igual à outra.</p>
   </div>
   <div class="gallery-grid">
-    
-<article class="work reveal real-photo photo-open" data-image="obra-1.jpg" data-caption="Obra autoral · Preto & Branco">
-  <img src="obra-1.jpg" alt="Obra autoral em preto e branco do AnJo Ateliê">
-  <div class="photo-overlay"></div>
-  <div class="work-info"><small>Obra original · disponível</small><h3>Preto & Branco</h3></div>
-</article>
-<article class="work reveal real-photo photo-open" data-image="obra-2.jpg" data-caption="Obra autoral · Flores">
-  <img src="obra-2.jpg" alt="Obra autoral colorida do AnJo Ateliê">
-  <div class="photo-overlay"></div>
-  <div class="work-info"><small>Obra original · disponível</small><h3>Flores</h3></div>
-</article>
-
-    <article class="work reveal"><div class="work-info"><small>Original · disponível</small><h3>Flores</h3></div></article>
-    <article class="work reveal"><div class="work-info"><small>Original · disponível</small><h3>Essência</h3></div></article>
-    <article class="work reveal"><div class="work-info"><small>Peça autoral</small><h3>Entre tons</h3></div></article>
+   <article class="art-card reveal photo-open" data-image="obra-cristo.png" data-caption="Cristo é o caminho">
+    <img src="obra-cristo.png" alt="Obra autoral com mensagem cristã">
+    <div class="art-meta"><small>Peça autoral</small><h3>Cristo é o caminho</h3></div>
+   </article>
+   <article class="art-card reveal photo-open" data-image="obra-mateus.png" data-caption="Mateus 18:12">
+    <img src="obra-mateus.png" alt="Obra autoral Mateus 18:12">
+    <div class="art-meta"><small>Peça autoral</small><h3>Mateus 18:12</h3></div>
+   </article>
+   <article class="art-card reveal photo-open" data-image="obra-flores.png" data-caption="Flores & traços">
+    <img src="obra-flores.png" alt="Obra floral autoral">
+    <div class="art-meta"><small>Peça autoral</small><h3>Flores & traços</h3></div>
+   </article>
+   <article class="art-card reveal photo-open" data-image="obra-colorida.png" data-caption="Cores em movimento">
+    <img src="obra-colorida.png" alt="Obra abstrata colorida">
+    <div class="art-meta"><small>Original</small><h3>Cores em movimento</h3></div>
+   </article>
+   <article class="art-card reveal photo-open" data-image="obra-abstrata.png" data-caption="Entre contrastes">
+    <img src="obra-abstrata.png" alt="Obra abstrata em preto e branco">
+    <div class="art-meta"><small>Original</small><h3>Entre contrastes</h3></div>
+   </article>
   </div>
-</div>
+  <div class="view-all"><a href="#personalize">Quero uma obra parecida, mas minha ↗</a></div>
+ </div>
 </section>
 
-<section id="encomenda" class="custom">
-<div class="container custom-grid">
-  <div class="reveal">
-    <span class="eyebrow">Encomenda autoral</span>
-    <h2>Faça existir<br>o que está<br>na sua cabeça.</h2>
-    <p style="margin-top:28px">Preencha em menos de dois minutos. Ao enviar, seu pedido será organizado e aberto no WhatsApp para nossa equipe conversar com você.</p>
-    <p style="margin-top:18px;font-size:12px">Não existe uma tabela rígida para personalizações. Cada obra é única e o orçamento considera tamanho, materiais, detalhes e complexidade.</p>
+<section id="personalize" class="custom">
+ <div class="container custom-grid">
+  <div class="custom-copy reveal">
+   <span class="kicker">Encomenda autoral</span>
+   <h2>Não encontrou<br>a obra certa?<br><em>Vamos criar.</em></h2>
+   <p>O formulário organiza sua ideia e abre uma conversa direta com o AnJo pelo WhatsApp. Você pode chegar com uma referência pronta ou só com uma vontade.</p>
+   <div class="custom-points">
+    <div class="custom-point"><b>1</b><span>Explique sua ideia do seu jeito.</span></div>
+    <div class="custom-point"><b>2</b><span>Defina tamanho, cores e elementos.</span></div>
+    <div class="custom-point"><b>3</b><span>Receba uma conversa de orçamento personalizada.</span></div>
+   </div>
   </div>
-  <form class="custom-form reveal" id="orderForm">
-    <div class="form-top"><strong>Seu pedido</strong><span>Leva menos de 2 min</span></div>
-    <div class="field"><label>Seu nome</label><input id="nome" required placeholder="Como podemos te chamar?"></div>
-    <div class="field"><label>O que você procura?</label><select id="tipo"><option>Quadro personalizado</option><option>Obra pronta</option><option>Presente</option><option>Ainda não sei</option></select></div>
-    <div class="field"><label>Conte sua ideia</label><textarea id="ideia" required placeholder="Conte o que você imaginou..."></textarea></div>
-    <div class="two">
-      <div class="field"><label>Cores</label><input id="cores" placeholder="Bege, azul, dourado..."></div>
-      <div class="field"><label>Tamanho</label><input id="tamanho" placeholder="Ex.: 40 × 50 cm"></div>
-    </div>
-    <div class="field"><label>Elementos importantes</label><input id="elementos" placeholder="Pessoas, frases, símbolos..."></div>
-    <div class="field"><label>Referência (opcional)</label><input id="ref" placeholder="Link ou descrição"></div>
-    <label class="check"><input type="checkbox" id="liberdade"> Quero dar liberdade ao artista para propor a composição.</label>
-    <button class="form-btn" type="submit">Enviar pedido pelo WhatsApp ↗</button>
+  <form class="order-card reveal" id="orderForm">
+   <div class="order-head"><strong>Vamos começar?</strong><span>~ 2 minutos</span></div>
+   <div class="field"><label for="nome">Seu nome</label><input id="nome" required placeholder="Como podemos te chamar?"></div>
+   <div class="field"><label for="tipo">O que você procura?</label><select id="tipo"><option>Quadro personalizado</option><option>Obra pronta</option><option>Presente</option><option>Ainda não sei</option></select></div>
+   <div class="field"><label for="ideia">Conte sua ideia</label><textarea id="ideia" required placeholder="Ex.: quero um quadro para presentear minha mãe, com flores e uma frase especial..."></textarea></div>
+   <div class="two">
+    <div class="field"><label for="cores">Cores</label><input id="cores" placeholder="Azul, bege..."></div>
+    <div class="field"><label for="tamanho">Tamanho</label><input id="tamanho" placeholder="40 × 50 cm"></div>
+   </div>
+   <div class="field"><label for="elementos">Elementos importantes</label><input id="elementos" placeholder="Pessoas, símbolos, frases..."></div>
+   <div class="field"><label for="referencia">Referência (opcional)</label><input id="referencia" placeholder="Link ou descrição"></div>
+   <label class="consent"><input id="liberdade" type="checkbox"><span>Tenho interesse em dar liberdade criativa para o artista propor a composição.</span></label>
+   <button class="order-submit" type="submit">Enviar minha ideia pelo WhatsApp ↗</button>
   </form>
-</div>
+ </div>
 </section>
 
-<section class="pricing">
-<div class="container">
-  <div class="section-head reveal">
-    <div><span class="eyebrow">Referência de investimento</span><h2>Comece pelo<br>tamanho.</h2></div>
-    <p>Valores iniciais para você se situar. Personalizações e materiais especiais são avaliados individualmente.</p>
+<section class="story" id="atelie">
+ <div class="container story-grid">
+  <div class="story-visual reveal"><img src="obra-flores.png" alt="Obra floral do AnJo Ateliê"><div class="story-stamp"><small>AnJo Ateliê</small><strong>Feito com intenção.</strong></div></div>
+  <div class="story-copy reveal">
+   <span class="kicker">O Ateliê</span>
+   <h2 style="margin-top:20px">Mais do que<br>decorar.</h2>
+   <p>O AnJo nasceu da vontade de transformar aquilo que amamos fazer em algo que pudesse chegar até outras pessoas. Cada pedido começa com uma história e termina com uma peça que passa a fazer parte dela.</p>
+   <p>Por isso, não trabalhamos com a ideia de “mais um quadro”. Trabalhamos para que cada obra tenha um motivo para existir.</p>
+   <div class="verse">“Cada um exerça o dom que recebeu...”<small>1 Pedro 4:10</small></div>
+  </div>
+ </div>
+</section>
+
+<section class="prices">
+ <div class="container">
+  <div class="section-top reveal">
+   <div><span class="kicker">Investimento</span><h2>Comece pelo<br>tamanho.</h2></div>
+   <p>Valores de referência. Personalizações, materiais e complexidade podem alterar o orçamento final.</p>
   </div>
   <div class="price-grid">
-    <div class="price reveal"><small>P · compacto</small><h3>R$ 50</h3><p>20 × 30 cm</p></div>
-    <div class="price reveal"><small>M · equilíbrio</small><h3>R$ 100</h3><p>30 × 30 cm</p></div>
-    <div class="price reveal"><small>G · presença</small><h3>R$ 110</h3><p>30 × 40 cm</p></div>
-    <div class="price reveal"><small>Personalizado</small><h3>R$ 60+</h3><p>Do seu jeito</p></div>
+   <div class="price reveal"><small>P · compacto</small><h3>R$ 50</h3><p>20 × 30 cm</p></div>
+   <div class="price reveal"><small>M · equilíbrio</small><h3>R$ 100</h3><p>30 × 30 cm</p></div>
+   <div class="price reveal"><small>G · presença</small><h3>R$ 110</h3><p>30 × 40 cm</p></div>
+   <div class="price reveal"><small>Especial</small><h3>R$ 60+</h3><p>Projeto personalizado</p></div>
   </div>
-</div>
+ </div>
 </section>
 
-<section id="sobre" class="about">
-<div class="container about-grid">
-  <div class="about-quote reveal">“Mais do que decorar um espaço, queremos que a nossa arte faça você sentir alguma coisa.”</div>
-  <div class="about-copy reveal">
-    <span class="eyebrow">Sobre o AnJo Ateliê</span>
-    <h2 style="margin-top:20px">Arte com<br>propósito.</h2>
-    <p>O AnJo Ateliê nasceu da vontade de dois amigos transformarem aquilo que amam em algo que pudesse chegar até outras pessoas.</p>
-    <p>Cada pedido é tratado como uma história própria. Da primeira conversa à entrega, buscamos criar com cuidado, responsabilidade e atenção aos detalhes.</p>
-    <div class="about-card">“Cada um exerça o dom que recebeu...”<br><small>1 Pedro 4:10</small></div>
+<section class="brand-story">
+ <div class="container brand-grid">
+  <div class="brand-box reveal"><img src="logo.jpg" alt="Logo oficial AnJo Ateliê"></div>
+  <div class="brand-copy reveal">
+   <span class="kicker">Nossa identidade</span>
+   <h2 style="margin-top:20px">Uma marca que<br>também é feita à mão.</h2>
+   <p>Delicadeza, gesto artesanal e personalidade. A identidade do AnJo foi pensada para ter a mesma sensação das obras: humana, autoral e cuidadosa.</p>
   </div>
-</div>
+ </div>
 </section>
 
 <section class="cta">
-<div class="container cta-inner reveal">
-  <span class="eyebrow">Vamos criar?</span>
-  <h2>Talvez seu próximo quadro ainda não exista.</h2>
+ <div class="container cta-inner reveal">
+  <span class="kicker" style="justify-content:center;color:var(--gold2)">Seu próximo quadro</span>
+  <h2>Talvez ele ainda<br>não exista.</h2>
   <p>Conte a ideia. A gente começa a dar forma a ela.</p>
-  <div style="margin-top:30px"><a class="btn btn-light shimmer-btn" href="#encomenda" ↗</a></div>
-</div>
+  <div style="margin-top:30px"><a class="btn btn-gold" href="#personalize">Começar meu projeto ↗</a></div>
+ </div>
 </section>
 </main>
 
 <footer>
-<div class="container">
+ <div class="container">
   <div class="footer-grid">
-    <div><div class="logo">AnJo<span>.</span></div><p>Arte personalizada & obras únicas. Feita à mão, com propósito.</p></div>
-    <div><h4>Navegue</h4><a href="#processo">Processo</a><a href="#galeria">Obras</a><a href="#encomenda">Encomendas</a><a href="#sobre">Sobre</a></div>
-    <div><h4>Contato</h4><a href="https://wa.me/5511976651795" target="_blank">WhatsApp · +55 11 97665-1795</a><a href="mailto:anjoatelieartes@gmail.com">anjoatelieartes@gmail.com</a></div>
+   <div class="footer-brand">
+    <a class="brand" href="#top"><img src="logo.jpg" alt="AnJo Ateliê"></a>
+    <p>Obras autorais e quadros personalizados feitos à mão, com propósito e atenção aos detalhes.</p>
+   </div>
+   <div><h4>Navegue</h4><a href="#processo">Processo</a><a href="#obras">Obras</a><a href="#personalize">Personalize</a><a href="#atelie">O Ateliê</a></div>
+   <div><h4>Fale com a gente</h4><a href="https://wa.me/5511976651795" target="_blank" rel="noopener">WhatsApp · (11) 97665-1795</a><a href="mailto:anjoatelieartes@gmail.com">anjoatelieartes@gmail.com</a></div>
   </div>
-  <div class="copyright"><span>© 2026 AnJo Ateliê. Todos os direitos reservados.</span><span>Arte que começa com uma ideia.</span></div>
-</div>
+  <div class="copyright"><span>© 2026 AnJo Ateliê</span><span>Arte que começa com uma ideia.</span></div>
+ </div>
 </footer>
 
-<div class="art-modal" id="artModal" aria-hidden="true">
-  <button class="art-modal-close" aria-label="Fechar">×</button>
-  <img id="modalImage" src="" alt="">
-  <div class="art-modal-caption" id="modalCaption"></div>
+<div class="mobile-cta"><a href="#personalize">Quero criar meu quadro <span style="margin-left:8px">↗</span></a></div>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+ <button class="close-lightbox" id="closeLightbox" aria-label="Fechar">×</button>
+ <img id="lightboxImage" alt="">
+ <div class="light-caption" id="lightCaption"></div>
 </div>
 <div class="toast" id="toast">Pedido preparado. Abrindo WhatsApp…</div>
 
 <script>
 const header=document.getElementById('header');
-window.addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40));
+const glow=document.getElementById('cursorGlow');
+window.addEventListener('scroll',()=>header.classList.toggle('is-scrolled',scrollY>35),{passive:true});
 
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+const io=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){entry.target.classList.add('visible');io.unobserve(entry.target)}
+ });
 },{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-document.getElementById('orderForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const get=id=>document.getElementById(id).value.trim();
-  const liberdade=document.getElementById('liberdade').checked?'Sim':'Não';
-  const msg=`Olá, AnJo Ateliê! ✨
+if(glow){
+ window.addEventListener('pointermove',e=>{
+  glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';glow.style.opacity='.9';
+ },{passive:true});
+ window.addEventListener('pointerleave',()=>glow.style.opacity='0');
+}
+
+const lightbox=document.getElementById('lightbox');
+const lbImg=document.getElementById('lightboxImage');
+const lbCaption=document.getElementById('lightCaption');
+function closeLightbox(){
+ lightbox.classList.remove('open');lightbox.setAttribute('aria-hidden','true');document.body.classList.remove('lock');
+}
+document.querySelectorAll('.photo-open').forEach(card=>{
+ card.addEventListener('click',()=>{
+  lbImg.src=card.dataset.image;
+  lbImg.alt=card.querySelector('img').alt;
+  lbCaption.textContent=card.dataset.caption||'';
+  lightbox.classList.add('open');lightbox.setAttribute('aria-hidden','false');document.body.classList.add('lock');
+ });
+});
+document.getElementById('closeLightbox').addEventListener('click',closeLightbox);
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+
+document.getElementById('menuBtn').addEventListener('click',()=>{
+ const nav=document.querySelector('.navlinks');
+ const open=nav.classList.toggle('mobile-open');
+ if(open){
+  nav.style.cssText='display:flex;position:fixed;left:14px;right:14px;top:76px;padding:16px;flex-direction:column;align-items:stretch;gap:2px;background:rgba(255,253,249,.96);backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:18px;box-shadow:0 25px 60px rgba(0,0,0,.12);z-index:90';
+ }else nav.style.cssText='';
+});
+document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('.navlinks').classList.remove('mobile-open');document.querySelector('.navlinks').style.cssText=''}));
+
+const form=document.getElementById('orderForm');
+form.addEventListener('submit',e=>{
+ e.preventDefault();
+ const val=id=>document.getElementById(id).value.trim();
+ const freedom=document.getElementById('liberdade').checked?'Sim':'Não';
+ const message=`Olá, AnJo Ateliê! ✨
 
 Quero fazer um pedido de arte.
 
-*Nome:* ${get('nome')}
-*Tipo:* ${get('tipo')}
-*Ideia:* ${get('ideia')}
-*Cores:* ${get('cores')||'Não informado'}
-*Tamanho:* ${get('tamanho')||'Não informado'}
-*Elementos:* ${get('elementos')||'Não informado'}
-*Referência:* ${get('ref')||'Não informado'}
-*Liberdade criativa:* ${liberdade}
+Nome: ${val('nome')}
+Tipo: ${val('tipo')}
+Ideia: ${val('ideia')}
+Cores: ${val('cores')||'Não informado'}
+Tamanho: ${val('tamanho')||'Não informado'}
+Elementos: ${val('elementos')||'Não informado'}
+Referência: ${val('referencia')||'Não informado'}
+Liberdade criativa: ${freedom}
 
-Gostaria de receber um orçamento.`;
-  document.getElementById('toast').classList.add('show');
-  setTimeout(()=>window.open('https://wa.me/5511976651795?text='+encodeURIComponent(msg),'_blank'),450);
-  setTimeout(()=>document.getElementById('toast').classList.remove('show'),3000);
+Gostaria de conversar sobre o orçamento.`;
+ document.getElementById('toast').classList.add('show');
+ setTimeout(()=>window.open('https://wa.me/5511976651795?text='+encodeURIComponent(message),'_blank','noopener'),350);
+ setTimeout(()=>document.getElementById('toast').classList.remove('show'),3200);
 });
-
-document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{
-  document.querySelector('nav').classList.remove('open');
-}));
-</script>
-
-<script>
-(function(){
- const hero=document.querySelector('.hero');
- const glow=document.createElement('div');
- glow.style.cssText='position:absolute;width:320px;height:320px;border-radius:50%;pointer-events:none;z-index:0;opacity:0;background:radial-gradient(circle,rgba(199,163,106,.10),transparent 68%);transform:translate(-50%,-50%);transition:opacity .4s;';
- hero.appendChild(glow);
- hero.addEventListener('pointermove',e=>{
-   const r=hero.getBoundingClientRect();
-   glow.style.left=(e.clientX-r.left)+'px';
-   glow.style.top=(e.clientY-r.top)+'px';
-   glow.style.opacity='.9';
- });
- hero.addEventListener('pointerleave',()=>glow.style.opacity='0');
-})();
-</script>
-
-<script>
-(function(){
- const modal=document.getElementById('artModal');
- const image=document.getElementById('modalImage');
- const caption=document.getElementById('modalCaption');
- document.querySelectorAll('.photo-open').forEach(card=>{
-   card.addEventListener('click',()=>{
-     image.src=card.dataset.image;
-     image.alt=card.querySelector('img')?.alt || 'Obra AnJo Ateliê';
-     caption.textContent=card.dataset.caption || '';
-     modal.classList.add('open');
-     modal.setAttribute('aria-hidden','false');
-     document.body.style.overflow='hidden';
-   });
- });
- function close(){
-   modal.classList.remove('open');
-   modal.setAttribute('aria-hidden','true');
-   document.body.style.overflow='';
- }
- modal.querySelector('.art-modal-close').addEventListener('click',close);
- modal.addEventListener('click',e=>{if(e.target===modal)close()});
- document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-})();
 </script>
 </body>
 </html>
